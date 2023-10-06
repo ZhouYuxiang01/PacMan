@@ -9,12 +9,11 @@ public class PacMove : MonoBehaviour
     private float currentTime = 0.0f;
     private Vector3 movementDirection = Vector3.left;
     public AudioSource mySound;
-    public float timeBetweenPlays = 0.1f;
     private float lastPlayTime;
 
     private void Start()
     {
-        lastPlayTime = currentTime;
+        lastPlayTime = Time.time;
     }
     void Update()
     {
@@ -46,12 +45,9 @@ public class PacMove : MonoBehaviour
             currentTime = 0.0f;
         }
 
-        if (Time.time - lastPlayTime >= timeBetweenPlays)
+        if (Time.time - lastPlayTime >= 0.5f)
         {
-            // Play the audio clip
             mySound.Play();
-
-            // Update the last play time
             lastPlayTime = Time.time;
         }
     }
